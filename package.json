@@ -1,0 +1,26 @@
+{
+    "name": "auto-api-generator",
+    "version": "0.0.1",
+    "main": "index.js",
+    "repository": "https://github.com/Mineru98/auto-api-generator.git",
+    "author": "Mineru98 <rmstjr1030@naver.com>",
+    "license": "MIT",
+    "scripts": {
+        "generate": "node dist/index.js",
+        "build": "tsc -p .",
+        "dev": "ts-node src/index.ts"
+    },
+    "dependencies": {
+        "argparse": "2.0.1",
+        "express": "4.17.3",
+        "yaml": "1.10.2"
+    },
+    "devDependencies": {
+        "@types/argparse": "2.0.10",
+        "@types/express": "4.17.13",
+        "@types/node": "17.0.21",
+        "@types/yaml": "1.9.7",
+        "ts-node": "10.5.0",
+        "typescript": "4.5.5"
+    }
+}

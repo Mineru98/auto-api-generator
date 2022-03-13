@@ -1,0 +1,47 @@
+```yaml
+config:
+	port: 8080
+	host: localhost
+route:
+	
+model:
+	employee:
+		id: number
+		name: string
+		job: 
+			- 관리책임자
+			- 사회복지사
+			- 간호사
+			- 요양보호사
+			- 기타
+		job_contract:
+			- 고용주
+			- 노동자
+		gender:
+			- 남자
+			- 여자
+		birthday:
+			type: date
+			format: yyyy-mm-dd
+		job_type:
+			- 방문요양
+			- 방문간호
+			- 방문목욕
+		email: string
+		start_date:
+			type: date
+			format: yyyy-mm-dd
+		end_date:
+			type: date
+			format: yyyy-mm-dd
+		tel: string
+		phone: string
+		address: string
+		img_url: string
+		career:
+			work:
+				type: array
+				 
+			license:
+```
+
