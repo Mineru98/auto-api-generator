@@ -1,47 +1,578 @@
-```yaml
 config:
-	port: 8080
-	host: localhost
+    port: 8080
+    name: test
+    version: 0.0.1
 route:
-	
+    prefix: /api
+    employees:
+        career:
+            prefix: /:employee_id
+            /:
+                GET:
+                    params:
+                        - employee_id
+            /work:
+                GET:
+                    params:
+                        - employee_id
+                POST:
+                    params:
+                        - employee_id
+                    body:
+                        company_name: string
+                        work_start_date: string
+                        work_end_date: string
+                PUT:
+                    query:
+                        query: string
+                    body:
+                        company_name: string
+                        work_start_date: string
+                        work_end_date: string
+            /license:
+                GET:
+                    params:
+                        - employee_id
+                POST:
+                    params:
+                        - employee_id
+                    body:
+                        name: string
+                        get_datetime: string
+                PUT:
+                    query:
+                        query: string
+                    body:
+                        name: string
+                        get_datetime: string
+        files:
+            prefix: /:employee_id
+            /:
+                GET:
+                    params:
+                        - employee_id
+                POST:
+                    params:
+                        - employee_id
+                    body:
+                        file_url: string
+                        file_name: string
+                        file_type: string
+                        created_date: string
+                        date: string
+            /:file_id:
+                GET:
+                    params:
+                        - file_id
+                        - employee_id
+                PUT:
+                    params:
+                        - file_id
+                        - employee_id
+                    body:
+                        file_url: string
+                        file_name: string
+                        file_type: string
+                        created_date: string
+                        date: string
+                DELETE:
+                    params:
+                        - file_id
+                        - employee_id
+        health:
+            prefix: /:employee_id
+            /:
+                GET:
+                    params:
+                        - employee_id
+                POST:
+                    params:
+                        - employee_id
+                    body:
+                        apply_date: string
+                        memo: string
+                        progress: string
+            /:health_id:
+                GET:
+                    params:
+                        - health_id
+                        - employee_id
+                PUT:
+                    params:
+                        - health_id
+                        - employee_id
+                    body:
+                        apply_date: string
+                        memo: string
+                        progress: string
+                DELETE:
+                    params:
+                        - health_id
+                        - employee_id
+        work_manage:
+            prefix: /:employee_id
+        index:
+            /:
+                GET:
+                    query:
+                        name: string
+                        job:
+                            type: string
+                            default: 전체
+                        page:
+                            type: number
+                            default: 0
+                POST:
+                    body:
+                        name: string
+                        job: string
+                        gender: string
+                        birthday: string
+                        jobType: string
+                        email: string
+                        phone: string
+                        tel: string
+                        address: string
+            /name:
+                GET:
+                    query:
+                        name: string
+            /:employee_id:
+                GET:
+                    params:
+                        - employee_id
+                DELETE:
+                    params:
+                        - employee_id
+            /:employee_id/email:
+                PATCH:
+                    params:
+                        - employee_id
+                    body:
+                        email: string
+            /:employee_id/phone:
+                PATCH:
+                    params:
+                        - employee_id
+                    body:
+                        phone: string
+            /:employee_id/tel:
+                PATCH:
+                    params:
+                        - employee_id
+                    body:
+                        tel: string
+            /:employee_id/address:
+                PATCH:
+                    params:
+                        - employee_id
+                    body:
+                        address: string
+    recipients:
+        contracts:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+                POST:
+                    params:
+                        - recipient_id
+                    body:
+                        contract_name: string
+                        contracted_date: string
+                        contract_start_date: string
+                        contract_end_date: string
+                        files: array
+            /:contract_id:
+                GET:
+                    params:
+                        - contract_id
+                        - recipient_id
+                PUT:
+                    params:
+                        - contract_id
+                        - recipient_id
+                    body:
+                        contract_name: string
+                        contracted_date: string
+                        contract_start_date: string
+                        contract_end_date: string
+                        files: array
+                DELETE:
+                    params:
+                        - contract_id
+                        - recipient_id
+        evaluations:
+            prefix: /:recipient_id
+        files:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+                POST:
+                    params:
+                        - recipient_id
+                    body:
+                        file_url: string
+                        file_name: string
+                        file_type: string
+                        description: string
+            /:file_id:
+                GET:
+                    params:
+                        - file_id
+                        - recipient_id
+                PUT:
+                    params:
+                        - file_id
+                        - recipient_id
+                    body:
+                        file_url: string
+                        file_name: string
+                        file_type: string
+                        description: string
+                DELETE:
+                    params:
+                        - file_id
+                        - recipient_id
+        payments:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+                POST:
+                    params:
+                        - recipient_id
+                    body:
+                        paied_name: string
+                        payment_date: string
+                        prepadid_money: number
+                        require_money: number
+                        paied_money: number
+                        unpaid_money: number
+                        paied_date: string
+                        payment_way: string
+                        payment_bank: string
+                        modified_money: number
+                        modified_reason: string
+            /:payment_id:
+                GET:
+                    params:
+                        - payment_id
+                        - recipient_id
+                PUT:
+                    params:
+                        - payment_id
+                        - recipient_id
+                    body:
+                        paied_name: string
+                        payment_date: string
+                        prepadid_money: number
+                        require_money: number
+                        paied_money: number
+                        unpaid_money: number
+                        paied_date: string
+                        payment_way: string
+                        payment_bank: string
+                        modified_money: number
+                        modified_reason: string
+                DELETE:
+                    params:
+                        - payment_id
+                        - recipient_id
+        plans:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+                POST:
+                    params:
+                        - recipient_id
+                    body:
+                        service_name: string
+                        select_days: number[]
+                        family: boolean
+                        service_start_time: string
+                        service_end_time: string
+                        etc_service: string
+                        employee_id: number
+            /:plan_id:
+                GET:
+                    params:
+                        - plan_id
+                        - recipient_id
+                PUT:
+                    params:
+                        - plan_id
+                        - recipient_id
+                    body:
+                        service_name: string
+                        select_days: number[]
+                        family: boolean
+                        service_start_time: string
+                        service_end_time: string
+                        etc_service: string
+                        employee_id: number
+                DELETE:
+                    params:
+                        - plan_id
+                        - recipient_id
+        protector:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+            /name:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        name: string
+            /relationship:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        relationship: string
+            /phone_number:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        phone_number: string
+            /email:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        email: string
+            /address:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        address: string
+            /comment:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        comment: string
+        work_transitions:
+            prefix: /:recipient_id
+            /:
+                GET:
+                    params:
+                        - recipient_id
+                POST:
+                    params:
+                        - recipient_id
+                    body:
+                        fromEmployeeName: string
+                        toEmployeeName: string
+                        serviceType: string
+                        recipientDiseaseStatus: string
+                        recipientPhysicalStatus: string
+                        workTransitionDate: string
+                        reason: string
+                        reasonType: string
+                        memo: string
+                        serviceMemo: number
+            /:work_transition_id:
+                GET:
+                    params:
+                        - work_transition_id
+                        - recipient_id
+                PUT:
+                    params:
+                        - work_transition_id
+                        - recipient_id
+                    body:
+                        fromEmployeeName: string
+                        toEmployeeName: string
+                        serviceType: string
+                        recipientDiseaseStatus: string
+                        recipientPhysicalStatus: string
+                        workTransitionDate: string
+                        reason: string
+                        reasonType: string
+                        memo: string
+                        serviceMemo: number
+                DELETE:
+                    params:
+                        - work_transition_id
+                        - recipient_id
+        index:
+            /:
+                GET:
+                    query:
+                        name: string
+                        page:
+                            type: number
+                            default: 0
+                POST:
+                    body:
+                        name: string
+                        jobNumber: string
+                        gender: string
+                        birthday: string
+                        serviceStartDate: string
+                        percent: string
+                        level: number
+                        serviceEndDate: string
+                        responsibilityEmployeeName: string
+                        tel: string
+                        phone: string
+                        address: string
+                        imgUrl: string
+            /:recipient_id:
+                GET:
+                    params:
+                        - recipient_id
+                DELETE:
+                    params:
+                        - recipient_id
+            /:recipient_id/phone:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        phone: string
+            /:recipient_id/tel:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        tel: string
+            /:recipient_id/address:
+                PATCH:
+                    params:
+                        - recipient_id
+                    body:
+                        address: string
 model:
-	employee:
-		id: number
-		name: string
-		job: 
-			- 관리책임자
-			- 사회복지사
-			- 간호사
-			- 요양보호사
-			- 기타
-		job_contract:
-			- 고용주
-			- 노동자
-		gender:
-			- 남자
-			- 여자
-		birthday:
-			type: date
-			format: yyyy-mm-dd
-		job_type:
-			- 방문요양
-			- 방문간호
-			- 방문목욕
-		email: string
-		start_date:
-			type: date
-			format: yyyy-mm-dd
-		end_date:
-			type: date
-			format: yyyy-mm-dd
-		tel: string
-		phone: string
-		address: string
-		img_url: string
-		career:
-			work:
-				type: array
-				 
-			license:
-```
-
+    employee:
+        type: object
+        id: number
+        name: string
+        job:
+            - 관리책임자
+            - 사회복지사
+            - 간호사
+            - 요양보호사
+            - 기타
+        job_contract:
+            - 고용주
+            - 노동자
+        gender:
+            - 남자
+            - 여자
+        birthday:
+            type: date
+            format: yyyy-mm-dd
+        job_type:
+            - 방문요양
+            - 방문간호
+            - 방문목욕
+        email: string
+        start_date:
+            type: date
+            format: yyyy-mm-dd
+        end_date:
+            type: date
+            format: yyyy-mm-dd
+        tel: string
+        phone: string
+        address: string
+        img_url: string
+        career:
+            type: object
+            work:
+                type: array
+                items:
+                    type: object
+                    company_name: string
+                    work_start_date:
+                        type: date
+                        format: yyyy-mm-dd
+                    work_end_date:
+                        type: date
+                        format: yyyy-mm-dd
+            license:
+                type: array
+                items:
+                    type: object
+                    name: string
+                    get_datetime:
+                        type: date
+                        format: yyyy-mm-dd
+        work_manage:
+            type: array
+            items:
+                type: object
+        healths:
+            type: array
+            items:
+                type: object
+                id: number
+                apply_date:
+                    type: date
+                    format: yyyy-mm-dd
+                memo: string
+                progress: boolean
+        files:
+            type: array
+            items:
+                type: object
+                id: number
+                file_name: string
+                file_url: string
+                file_type:
+                    - 휴가신청서
+                    - 개인정보수집 이용동의서
+                    - 고충상담일지
+                created_date:
+                    type: date
+                    format: yyyy-mm-dd
+                data:
+                    type: object
+                    vacation_start_date:
+                        type: date
+                        format: yyyy-mm-dd
+                    vacation_end_date:
+                        type: date
+                        format: yyyy-mm-dd
+                    reason: string
+                    emergency_contact_number: string
+                    representative_employee_id: number
+                    representative_employee_name: string
+    recipient:
+        type: object
+        id: number
+        name: string
+        job_number: string
+        gender:
+            - 남자
+            - 여자
+        birthday:
+            type: date
+            format: yyyy-mm-dd
+        percent:
+            - 감경 15%
+        level:
+            - 1등급
+            - 2등급
+            - 3등급
+            - 4등급
+            - 5등급
+        service_end_date:
+            type: date
+            format: yyyy-mm-dd
+        state: string
+        responsibility_employee_name: string
+        tel: string
